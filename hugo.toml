@@ -1,4 +1,4 @@
-baseurl                 = "https://finn.lesueur.nz"
+baseurl                 = "https://solidarity.nz"
 contentdir              = "content"
 layoutdir               = "layouts"
 title                   = "SolidarityNZ"
