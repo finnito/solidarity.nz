@@ -1,0 +1,84 @@
+{{ define "main" }}
+	{{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
+  	{{ $dateHuman := .Date | time.Format ":date_long" }}
+  	{{ $page := . }}
+	
+	<article>
+		<header>
+			<h1>{{ .Title }}</h1>
+			{{ with .Date }}
+    		<p>Posted on <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time> 
+    		{{ end }}
+    		{{ with .Params.author }}
+				{{ $author := index site.Data.authors . }}
+				by <a rel="author" href="/author/{{ . | urlize }}">{{ $author.Name }}</a>, 
+				who is affiliated with
+				{{- range $i, $e := $author.Affiliations -}}
+					{{ if $i }}, {{ end }}
+					<a href="{{ index (split $e ", ") 1 | safeURL }}">{{ index (split $e ", ") 0 }}</a>
+				{{- end -}}
+    		{{- end -}}
+    		{{ if (or (isset .Params "date") (isset .Params "author")) }}.{{ end }}
+    	</header>
+    	
+    	<main>
+    	{{ .Content }}
+    	{{ with .Params.author }}
+  			<div class="author-description">  			
+				{{ $author := index site.Data.authors . }}
+				<p><strong><a rel="author" href="/author/{{ . | urlize }}">{{ $author.Name }}</a></strong>,
+				{{- range $i, $e := $author.Affiliations -}}
+					{{ if $i }}, {{ end }}
+					<a href="{{ index (split $e ",") 1 }}">{{ index (split $e ",") 0 }}</a>
+				{{- end -}}.
+				<br/>
+					{{ $author.Description }}
+				</p>
+			</div>
+			{{ end }}
+    	</main>
+    	
+    	<aside>
+		{{ with .Params.series }}    	
+    	<div class="series grey-bubble">
+    	{{ $series := index $page.Site.Taxonomies.series ($page.Params.series | urlize) }}
+    		<p>This post is part of the series <strong><a href="/series/{{ $page.Params.series | urlize }}">{{ $page.Params.series }}</a></strong>.</p>
+			
+			<ul>
+			{{ range sort $series.Pages ".Params.date" "asc" }}
+				{{ if eq .Title $page.Title }}
+					<li>{{.Date.Format "Jan 02, 2006"}} - {{.LinkTitle}}</li>
+				{{ else }}
+					<li>{{.Date.Format "Jan 02, 2006"}} - <a href="{{.Permalink}}">{{.LinkTitle}}</a></li>
+				{{ end }}
+			{{end}}
+			</ul>
+        </div>
+        {{ end }}
+        
+        {{ with .Params.tags }}
+        <div class="grey-bubble">
+			<p><strong>Tags</strong>: {{- range $i, $e := . -}}
+				{{- if $i -}}, {{ end }}
+				<a href="/tags/{{ $e | urlize }}" class="tag">{{ index (split $e ",") 0 }}</a>
+			{{- end -}}
+			.
+			
+			{{ range . }}
+				{{ $tag := index $page.Site.Taxonomies.tags (. | urlize) }}
+				<p>Recent posts tagged <a href="/tags/{{ . | urlize }}" class="tag">{{ . }}</a>:</p>
+				
+				<ul>
+				{{ range first 5 (sort $tag.Pages ".Params.date" "desc") }}
+					<li><time>{{.Date.Format "2006/01/02"}}</time> - <a href="{{ .RelPermalink }}">{{.LinkTitle}}</a></li>
+				{{ end }}
+				</ul>
+			{{ end }}
+		</div>
+		{{- end -}}
+		</aside>
+  		
+  		<footer>
+			
+  		</footer>
+{{ end }}

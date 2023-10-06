@@ -1,0 +1,24 @@
+{{ define "main" }}
+  {{ .Content }}
+  {{ range where .Site.RegularPages "File.Dir" "posts/" }}
+  {{ $page := . }}
+  	<article>
+    	<header>
+    		<h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+			{{ with .Params.author }}
+				<p>{{ $author := index site.Data.authors . }}
+				<time>{{ $page.Date.Format "Jan 2, 2006" }}</time> by <a rel="author" href="/author/{{ . | urlize }}">{{ $author.Name }}</a>, 
+				who is affiliated with
+				{{- range $i, $e := $author.Affiliations -}}
+					{{ if $i }}, {{ end }}
+					<a href="{{ index (split $e ",") 1 }}">{{ index (split $e ",") 0 }}</a>
+				{{- end -}}
+			{{- end -}}.</p>
+	    </header>
+	    <main>
+			<p>{{ .Summary }}</p>
+			<p class="read-more"><a class="tag" href="{{ .RelPermalink }}" title="{{ .Title }}">Full Story</a></p>
+		</main>
+	</article>
+  {{ end }}
+{{ end }}

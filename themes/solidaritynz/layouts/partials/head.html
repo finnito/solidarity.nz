@@ -1,0 +1,36 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0">
+<link rel="icon" href="/favicon.png">
+
+<title>{{ block "title" . }}{{ end }}{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
+<meta property="og:title" content="{{ .Title }} | {{ .Site.Title }}">
+<meta name="title" content="{{ .Title }} | {{ .Site.Title }}">
+
+{{ with .Params.metaDescription }}
+  <meta name="description" content="{{ . }}">
+  <meta property="og:description" content="{{ . }}">
+{{ end }}
+
+{{ with .Params.metaImage }}
+  {{ $metaImg := ((index ($.Page.Resources.Match .) 0).Resize "1024x") }}
+  <meta property="og:image" content="{{ $metaImg.Permalink }}">
+{{ end }}
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ .Permalink }}">
+
+{{ with .OutputFormats.Get "rss" -}}
+  {{ printf `<link rel=%q type=%q href=%q title=%q>` .Rel .MediaType.Type .Permalink site.Title | safeHTML }}
+{{ end }}
+<link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+
+{{- with resources.Get "css/main.css" }}
+  {{- if eq hugo.Environment "development" }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}">
+  {{- else }}
+    {{- with . | minify | fingerprint }}
+      <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+    {{- end }}
+  {{- end }}
+{{- end }}
+

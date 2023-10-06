@@ -1,0 +1,35 @@
+baseurl                 = "https://finn.lesueur.nz"
+contentdir              = "content"
+layoutdir               = "layouts"
+title                   = "SolidarityNZ"
+canonifyurls            = true
+uglyurls                = false
+staticDir               = ["static"]
+DefaultContentLanguage  = "en"
+LanguageCode            = "en"
+theme                   = "solidaritynz"
+metaDataFormat          = "yaml"
+sourceURL				= "https://github.com/finnito/solidarity.nz"
+
+[taxonomies]
+  series                = 'series'
+  tags 					= "tags"
+  authors				= "author"
+
+[Params]
+  subtitle              = ""
+  logo                  = "logo.png"
+  favicon               = "favicon.ico"
+  dateFormat            = "January 2, 2006"
+  commit                = true
+  rss                   = true
+  mainSections          = []
+
+[Author]
+  name                  = "Finn Le Sueur"
+  email                 = "workersolidaritynz@gmail.com"
+
+[sitemap]
+  changefreq            = "daily"
+  filename              = "sitemap.xml"
+  priority              = 0.5

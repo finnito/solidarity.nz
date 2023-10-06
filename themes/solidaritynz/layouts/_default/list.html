@@ -1,0 +1,11 @@
+{{ define "main" }}
+	{{ $author := index (where .Site.RegularPages "Title" (index (last 2 (split .File.Dir "/")) 0) ) 0 }}
+	{{ $author.Params }}
+  <h1>{{ .Title }}</h1>
+  
+  {{ .Content }}
+  {{ range .RegularPages }}
+    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+    {{ .Summary }}
+  {{ end }}
+{{ end }}
