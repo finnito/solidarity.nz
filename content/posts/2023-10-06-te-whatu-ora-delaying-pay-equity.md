@@ -1,6 +1,6 @@
 ---
 title: Te Whatu Ora Delaying Pay Equity
-date: 2023-10-06T12:00:00+13:00
+date: 2023-10-06T09:00:00+13:00
 author: Finn Le Sueur
 tags: ["Te Whatu Ora", "E Tū", "PSA", "NZNO"]
 ---
