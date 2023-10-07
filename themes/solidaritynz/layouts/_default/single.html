@@ -1,24 +1,10 @@
 {{ define "main" }}
-	{{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
-  	{{ $dateHuman := .Date | time.Format ":date_long" }}
   	{{ $page := . }}
 	
 	<article>
 		<header>
 			<h1>{{ .Title }}</h1>
-			{{ with .Date }}
-    		<p>Posted on <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time> 
-    		{{ end }}
-    		{{ with .Params.author }}
-				{{ $author := index site.Data.authors . }}
-				by <a rel="author" href="/author/{{ . | urlize }}">{{ $author.Name }}</a>, 
-				who is affiliated with
-				{{- range $i, $e := $author.Affiliations -}}
-					{{ if $i }}, {{ end }}
-					<a href="{{ index (split $e ", ") 1 | safeURL }}">{{ index (split $e ", ") 0 }}</a>
-				{{- end -}}
-    		{{- end -}}
-    		{{ if (or (isset .Params "date") (isset .Params "author")) }}.{{ end }}
+			{{ partial "post_meta.html" . }}
     	</header>
     	
     	<main>

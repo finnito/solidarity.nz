@@ -1,15 +1,17 @@
 {{ define "main" }}
-<article><main>
-{{ $author := index site.Data.authors .Params.Title }}
-<h1>Author: {{ $author.Name }}</h1>
-<p>{{ $author.Description }}</p>
+<article>
+	<main>
+		{{ $author := index site.Data.authors .Params.Title }}
+		<h1>Author: {{ $author.Name }}</h1>
+		<p>{{ $author.Description }}</p>
 
-<ul>
-    {{ range .Pages.ByDate.Reverse }}
-        <li>
-            <time>{{ .Date.Format "Jan 2, 2006" }}</time>: <a href="{{.Permalink}}">{{.Title}}</a>
-        </li>
-    {{ end }}
-</ul>
-</main></article>
+		<ul>
+			{{ range .Pages.ByDate.Reverse }}
+				<li>
+					<time>{{ .Date.Format "Jan 2, 2006" }}</time>: <a href="{{.Permalink}}">{{.Title}}</a>
+				</li>
+			{{ end }}
+		</ul>
+	</main>
+</article>
 {{ end }}
