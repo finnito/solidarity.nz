@@ -2,7 +2,7 @@
 title: Te Whatu Ora Delaying Pay Equity
 date: 2023-10-06T09:00:00+13:00
 author: Finn Le Sueur
-tags: ["Te Whatu Ora", "E Tū", "PSA", "NZNO"]
+tags: ["Te Whatu Ora", "E Tū", "PSA", "NZNO", "Pay Equity"]
 ---
 
 Te Whatu Ora appears to be [delaying the Pay Equity process for Care and Support Workers](https://etu.nz/te-whatu-ora-must-stop-unjustly-delaying-pay-equity-for-65000-care-and-support-workers/) here in Aotearoa. E Tū, the Public Service Association (PSA), and New Zealand Nurses Organisation (NZNO) are calling on Te Whatu Ora to stop delays via [an open letter](https://our.actionstation.org.nz/petitions/open-letter-fund-pay-equity-for-care-and-support-workers-now) which needs your signature and via a legal challenge.
