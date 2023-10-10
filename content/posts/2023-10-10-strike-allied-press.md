@@ -2,13 +2,15 @@
 title: STRIKE: Allied Press
 date: 2023-10-10T12:00:00+13:00
 author: Finn Le Sueur
-series: 
+series: Allied Press
 tags: ["E Tū", "Allied Press"]
 ---
 
 [E Tū reports](https://etu.nz/allied-press-journalists-take-24-hour-strike-action/) that more than 40 members are striking for a whole day as part of their stalled negotiations with the [Otago Daily Times](https://www.odt.co.nz).
 
 Rebecca Fox, union delegate, says that wages over the last 15 years have lagged behind inflation and other employers in the industry.
+
+<!--more-->
 
 > "Other players in the industry are getting five to six percent pay increases – our last one was two percent," she says.
 > 
