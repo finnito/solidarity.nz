@@ -5,7 +5,6 @@ author: Finn Le Sueur
 series: Overseas
 tags: ["Cory Doctorow", "Foreign Healthcare", "Children", "American Labor"]
 summary: It's all go with union efforts and collective action this week. Blood in the Machine by Brian Merchant, US healthcare workers on strike, US schools to teach kids their labour rights and more.
-draft: true
 ---
 
 It seems that it is all go with union efforts and collective action at the moment.
@@ -16,7 +15,8 @@ It seems that it is all go with union efforts and collective action at the momen
 
 2. [The Guardian reports](https://www.theguardian.com/us-news/2023/oct/03/kaiser-permanente-healthcare-strike-hospital-union-california-washington-dc) that [over 75,000 healthcare workers poised to strike] in the US. The contract between [Coalition of Kaiser Permanente Unions](https://www.unioncoalition.org/) and Kaiser Permanente – a private healthcare provider – expired recently and [negotiations have not been fruitful](https://www.unioncoalition.org/2023-oct-strike-notice/).
 
+Update! [The strike has started](https://truthout.org/articles/75000-kaiser-permanente-workers-begin-largest-health-care-strike-in-us-history/)! 
+
 3. [A new law in California, US, directs schools to teach kids about their workplace rights](https://contracosta.news/2023/10/02/ortega-announces-new-law-to-prevent-child-labor-exploitation/). This comes as there is an uptick in minors being injured in the workplace, and status like Iowa have reduced the age (now 14) at which children can work.
 
 4. [Doctorow returns](https://pluralistic.net/2023/10/05/mr-gotcha/) with a discussion of private equity, union pension funds and how American those dollars are probably used by private equity firms to fund union-busting and other disgraces.
-
