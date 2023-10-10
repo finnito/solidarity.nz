@@ -1,5 +1,5 @@
 ---
-title: STRIKE: Allied Press
+title: "STRIKE: Allied Press"
 date: 2023-10-10T12:00:00+13:00
 author: Finn Le Sueur
 series: Allied Press
