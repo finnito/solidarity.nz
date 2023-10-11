@@ -175,7 +175,7 @@ blockquote {
 }
 
 @media (min-width: 850px) {
-	body {padding: 1rem 0;}
+/* 	body {padding: 1rem 0;} */
 	
 	main > article {
 		display: grid; 
