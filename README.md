@@ -3,13 +3,14 @@
 This repo contains the content, images, and theme markup for https://solidarity.nz. The website is published using [Hugo](https://gohugo.io/).
 
 ## To-do List
-- [ ] Single posts
-- [ ] Author page
-- [ ] Tag pages
-- [ ] Series of posts
+- [x] Single posts
+- [x] Author page
+- [x] Tag pages
+- [x] Series of posts
 - [ ] Book/podcast/TV/movie reviews
 - [ ] Book club
 - [ ] __Strike tracker__ (inspired by https://striketracker.ilr.cornell.edu/)
+- [x] [Isso](https://github.com/posativ/isso/) comment system
 
 ## Contributing
 
