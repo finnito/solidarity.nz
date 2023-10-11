@@ -28,7 +28,8 @@
 		{{ with .Params.series }}    	
     	<div class="series grey-bubble">
     	{{ $series := index $page.Site.Taxonomies.series ($page.Params.series | urlize) }}
-    		<p>This post is part of the series <strong><a href="/series/{{ $page.Params.series | urlize }}">{{ $page.Params.series }}</a></strong>.</p>
+    		<details open>
+    		<summary>Series: <strong><a href="/series/{{ $page.Params.series | urlize }}">{{ $page.Params.series }}</a></strong>.</summary>
 			
 			<ul>
 			{{ range sort $series.Pages ".Params.date" "asc" }}
@@ -39,26 +40,23 @@
 				{{ end }}
 			{{end}}
 			</ul>
+			</details>
         </div>
         {{ end }}
         
         {{ with .Params.tags }}
         <div class="grey-bubble">
-			<p><strong>Tags</strong>: {{- range $i, $e := . -}}
-				{{- if $i -}}, {{ end }}
-				<a href="/tags/{{ $e | urlize }}" class="tag">{{ index (split $e ",") 0 }}</a>
-			{{- end -}}
-			.
-			
 			{{ range . }}
+			<details>
 				{{ $tag := index $page.Site.Taxonomies.tags (. | urlize) }}
-				<p>Recent posts tagged <a href="/tags/{{ . | urlize }}" class="tag">{{ . }}</a>:</p>
+				<summary>Recent posts tagged <a href="/tags/{{ . | urlize }}" class="tag">{{ . }}</a></summary>
 				
 				<ul>
 				{{ range first 5 (sort $tag.Pages ".Params.date" "desc") }}
 					<li><time>{{.Date.Format "2006/01/02"}}</time> - <a href="{{ .RelPermalink }}">{{.LinkTitle}}</a></li>
 				{{ end }}
 				</ul>
+			</details>
 			{{ end }}
 		</div>
 		{{- end -}}

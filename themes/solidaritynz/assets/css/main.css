@@ -111,7 +111,7 @@ article footer {
 }
 
 aside ul {
-	margin-top: -1rem;
+	margin-top: 0;
 }
 
 footer details { margin-top: 1rem; }
