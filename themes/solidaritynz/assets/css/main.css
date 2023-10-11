@@ -105,9 +105,17 @@ main article:not(:last-of-type) main {
 	border-bottom: 1px solid lightgrey;
 }
 
+article footer {
+	border-top: 1px solid lightgray;
+	margin-top: 2rem;
+}
+
 aside ul {
 	margin-top: -1rem;
 }
+
+footer details { margin-top: 1rem; }
+details h2 { display: inline-block; margin: 0 1rem; }
 
 .author-description {
   position:relative;

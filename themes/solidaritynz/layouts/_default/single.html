@@ -65,6 +65,21 @@
 		</aside>
   		
   		<footer>
-			
+  		<details>
+  			<summary><h2>Comments</h2></summary>
+		<section
+  			id="isso-thread"
+  			data-title="{{ .Title }}"
+  			data-isso-id="{{ .Slug }}">
+  		</section>
+  		
+  		<script
+  			data-isso-avatar="false"
+  			data-isso-vote="false"
+  			data-isso-id="{{ .Slug}}"
+  			src="https://comments.solidarity.nz/js/embed.min.js"
+			src="/prefix/js/embed.js">
+		</script>
+		</details>
   		</footer>
 {{ end }}
