@@ -1,6 +1,7 @@
 ---
 title: Massey Cuts Jobs in Languages, Humanities and Social Sciences
-date: 17 October 2023 at 9:15:18 AM NZDT
+date: 2023-10-17T09:35:00+13:00
+author: Finn Le Sueur
 tags: ["Massey", "TEU"]
 series: Massey University
 ---
