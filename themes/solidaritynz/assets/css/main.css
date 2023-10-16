@@ -13,7 +13,6 @@ body {
   flex-direction: column;
   min-height: 100vh;
   margin: 0 auto;
-/*   font-family: ui-rounded, 'Hiragino Maru Gothic ProN', Quicksand, Comfortaa, Manjari, 'Arial Rounded MT', 'Arial Rounded MT Bold', Calibri, source-sans-pro, sans-serif;  */
 	font-family: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif;
   font-weight: normal;
   padding: 1rem 0.5rem;
@@ -23,8 +22,6 @@ body {
 h1, h2, h3, h4, h5, h6 {
 	font-family: Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif;
 font-weight: 900;
-/* 	font-family: ui-rounded, 'Hiragino Maru Gothic ProN', Quicksand, Comfortaa, Manjari, 'Arial Rounded MT', 'Arial Rounded MT Bold', Calibri, source-sans-pro, sans-serif; */
-/* 	font-family: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif; */
 }
 
 body > main {
