@@ -113,6 +113,7 @@ aside ul {
 
 footer details { margin-top: 1rem; }
 details h2 { display: inline-block; margin: 0 1rem; }
+details summary { cursor: pointer; }
 
 .author-description {
   position:relative;
