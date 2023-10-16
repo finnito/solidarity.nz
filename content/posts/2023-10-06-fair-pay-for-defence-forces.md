@@ -4,7 +4,6 @@ date: 2023-10-06T12:00:00+13:00
 author: Finn Le Sueur
 series: 
 tags: ["Defence Force", "Remuneration Authority"]
-summary: 
 ---
 
 One of the latest campaign promises from Labour is [that they will ask the Remuneration Authority to independently set pay rates for defence personnel](https://www.labour.org.nz/news-ensuring_fair_pay_for_our_defence_forces).

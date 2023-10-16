@@ -3,7 +3,6 @@ title: Wages on the Rise
 date: 2023-10-06T08:00:00+13:00
 author: Finn Le Sueur
 tags: ["Wages", "TradeMe"]
-summary: 
 ---
 
 [TradeMe's Q3 job market update](https://www.trademe.co.nz/c/jobs/news/five-year-peak-in-applications-as-salaries-reach-new-high), released on 5 October 2023 shows the average salary in Aotearoa broke the $70,000/year mark, up $5,500 from the same time last year. You can [see the data for individual sectors here](https://www.trademe.co.nz/a/jobs/salary-guide) – go see how yours stacks up!

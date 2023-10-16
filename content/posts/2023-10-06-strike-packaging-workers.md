@@ -4,7 +4,6 @@ date: 2023-10-06T08:00:00+13:00
 author: Finn Le Sueur
 series: 
 tags: ["Strike", "E Tū"]
-summary: 
 ---
 
 [E Tū reports](https://etu.nz/packaging-workers-continue-week-long-strike-for-decent-pay/) that 60 members of Graphic Packaging in Tāmaki Makaurau (Auckland) are on a rolling strike until Tuesday next week.
