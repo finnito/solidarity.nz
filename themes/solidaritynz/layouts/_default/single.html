@@ -53,7 +53,7 @@
 				
 				<ul>
 				{{ range first 5 (sort $tag.Pages ".Params.date" "desc") }}
-					<li><time>{{.Date.Format "2006/01/02"}}</time> - <a href="{{ .RelPermalink }}">{{.LinkTitle}}</a></li>
+					<li><time>{{.Date.Format "2006-01-02"}}</time> - <a href="{{ .RelPermalink }}">{{.LinkTitle}}</a></li>
 				{{ end }}
 				</ul>
 			</details>
