@@ -1,0 +1,189 @@
+{{ define "main" }}
+<header>
+<h1>Strike Map</h1>
+<p class="strike-count">Notify us of a strike using <a href="https://docs.google.com/forms/d/e/1FAIpQLScrVOEhryY4P-VBaes0RaSALgOnbQmsPFWCCJm27vcFSRGnLQ/viewform">this Google Form</a>, and view the raw data <a href="https://docs.google.com/spreadsheets/d/1hYp4jkKaix3HcsyxgmOAqG_elEfOC2t8srFAQD54FZg/">on this spreadsheet</a>. <span>Loading</span> known events.</p>
+</header>
+
+<main>
+<div class="map-container">
+	<div class="sidebar">
+		<h2>Selected Event:</h2>
+		<ul>
+			<li class="from"><strong>From: </strong><span></span></li>
+			<li class="to"><strong>To: </strong><span></span></li>
+			<li class="employer"><strong>Employer: </strong><span></span></li>
+			<li class="union"><strong>Union: </strong><span></span></li>
+			<li class="industry"><strong>Industry: </strong><span></span></li>
+			<li class="locations"><strong>Locations: </strong><span></span></li>
+<!-- 			<li class="address"><strong>Address: </strong><span></span></li> -->
+			<li class="strike-or-protest"><strong>Type: </strong><span></span></li>
+			<li class="participants"><strong>Approx. Participants: </strong><span></span></li>
+			<li class="demands"><strong>Demands: </strong><span></span></li>
+			<li class="sources"><strong>Sources: </strong><span></span></li>
+		</ul>
+	</div>
+	<div id="strike-map"></div>
+</div>
+</main>
+
+<script src="/js/leaflet.min.js"></script>
+<link href="/css/leaflet.min.css" rel="stylesheet" />
+<script src="/js/Leaflet.VectorGrid.js"></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.css' rel='stylesheet' />
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js'></script>
+
+<script src="https://unpkg.com/mapbox-gl-leaflet/leaflet-mapbox-gl.js"></script>
+<link href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" rel="stylesheet">
+<link href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" rel="stylesheet"/>
+<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+<script>
+var StrikeMap,
+	Strikes,
+	SelectedEvent,
+	SelectedGroup,
+	OMS;
+
+document.addEventListener("DOMContentLoaded", function() {
+	StrikeMap = L.map('strike-map', {
+		zoom: 12,
+		maxZoom: 14,
+		center: L.latLng(-43.5349451,172.6341468)
+	})
+	.on("zoomend", highlightSelectedGroup)
+	.on("moveend", highlightSelectedGroup);
+//     StrikeMap.addControl(new L.Control.Fullscreen());
+    Strikes = L.featureGroup().addTo(StrikeMap);
+	
+	// WORKS
+	L.mapboxGL({
+		style: "https://basemaps.linz.govt.nz/v1/styles/topographic.json?api=c01hcnp28y2x5ex6t7rfjz403mf",
+		attribution: "© Toitū Te Whenua - CC BY 4.0"
+	}).addTo(StrikeMap);
+    
+    // Sheet: https://docs.google.com/spreadsheets/d/1pE7Sa5UpRX7Wz_hAsntYntUnQ0kBuYsJdfhip-BKYts/
+    var strikeDataURL = "https://docs.google.com/spreadsheets/d/1pE7Sa5UpRX7Wz_hAsntYntUnQ0kBuYsJdfhip-BKYts/gviz/tq";
+    fetch(strikeDataURL)
+    	.then(data=>{return data.text()})
+    	.then(res=>{
+    		var from = res.indexOf("{");
+			var to   = res.lastIndexOf("}")+1;
+			var jsonText = res.slice(from, to);
+			var parsedText = JSON.parse(jsonText);
+// 			console.log(parsedText);
+			setTotalStrikes(parsedText.table);
+			addStrikes(parsedText.table);
+    	})
+});
+
+function setTotalStrikes(table) {
+	document.querySelector(".strike-count span").innerText = table.rows.length;
+}
+
+function highlightSelectedGroup() {
+	// Hide past markers
+	document.querySelectorAll('.active-marker').forEach(marker => {
+		marker.classList.remove("active-marker");
+	})
+
+	// Highlight visible markers
+	// if (SelectedGroup) {
+// 		Object.values(SelectedGroup._layers).forEach((layer) => {
+// 			console.log(layer._icon.classList.add("active-marker"));
+// 		})
+// 	}
+	StrikeMap.eachLayer(function(layer) {
+		if (layer.hasOwnProperty("_icon") && layer.options.strikeID === SelectedGroup) {
+			layer._icon.classList.add("active-marker");
+			console.log(layer);
+		}
+	})
+}
+
+function updateSidebar() {
+	document.querySelector(".sidebar .from span").innerText = SelectedEvent[0].f;
+	document.querySelector(".sidebar .to span").innerText = SelectedEvent[1].f;
+	document.querySelector(".sidebar .employer span").innerText = SelectedEvent[2].v;
+	document.querySelector(".sidebar .union span").innerText = SelectedEvent[3].v;
+	document.querySelector(".sidebar .industry span").innerText = SelectedEvent[4].v;
+	document.querySelector(".sidebar .locations span").innerText = SelectedEvent[5].v;
+// 	document.querySelector(".sidebar .address span").innerHTML = `<a href=" https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(SelectedEvent[7].v)}">${SelectedEvent[7].v}</a>` || "";
+	document.querySelector(".sidebar .strike-or-protest span").innerText = SelectedEvent[8].v;
+	document.querySelector(".sidebar .participants span").innerText = SelectedEvent[9].v;
+	document.querySelector(".sidebar .demands span").innerText = SelectedEvent[10].v;
+	
+	var sources = [];
+	var i = 1;
+	SelectedEvent[11].v.split(", ").forEach(source => {
+		sources.push(`<a href="${source}">Source ${i}</a>`);
+		i += 1;
+	})
+	document.querySelector(".sidebar .sources span").innerHTML = sources.join(", ");
+}
+
+function addStrikes(table) {
+	
+	// Row Format
+	// 0: Object { v: "Date(2023,9,4)", f: "04/10/2023" }
+// 	1: Object { v: "Date(2023,9,10)", f: "10/10/2023" }
+// 	2: Object { v: "Graphic Packaging International NZ" }
+// 	3: Object { v: "E Tū" }
+// 	4: Object { v: "Warehouse" }
+// 	5: Object { v: 1, f: "1" }
+// 	6: Object { v: "-36.92899996894473, 174.8341123946902" }
+// 	7: Object { v: "1061 Great South Road, Penrose, Auckland" }
+// 	8: Object { v: "Strike and Protest" }
+// 	9: Object { v: 60, f: "60" }
+// 	10: Object { v: "Pay" }
+// 	11: Object { v: "https://etu.nz/packaging-workers-continue-week-long-strike-for-decent-pay/" }
+	
+	var cluster = L.markerClusterGroup([], {
+		removeOutsideVisibleBounds: false,
+		spiderfyOnMaxZoom: true,
+		disableClusteringAtZoom: 12
+	})
+	.on("animationend", highlightSelectedGroup)
+	.addTo(StrikeMap);
+	
+	var i = 1,
+		j = 0;
+	table.rows.forEach(row => {
+// 		console.log(row);
+
+		// var group = L.featureGroup()
+// 		.addTo(cluster)
+// 		.on("click", function(e) {
+// 			console.log(e);
+// 			console.log(e.target._layers);
+// 			SelectedGroup = e.target._featureGroup;
+// 			highlightSelectedGroup();
+// 			SelectedEvent = row.c;
+// 			updateSidebar();
+// 		})
+// 		.on("animationend", highlightSelectedGroup)
+// 		.bindTooltip(`${row.c[2].v} by members of ${row.c[3].v}.<br/>From ${row.c[0].f} to ${row.c[1].f}. Click for more details.`);
+		
+		row.c[6].v.split("; ").forEach(coordinates => {
+			L.marker(coordinates.split(", "), {
+				strikeID: j
+			})
+			.on('click', function(e) {
+// 				console.log(e);
+				SelectedEvent = row.c;
+				SelectedGroup = e.target.options.strikeID;
+				updateSidebar();
+				highlightSelectedGroup();
+			})
+			.bindTooltip(`${row.c[2].v} by members of ${row.c[3].v}.<br/>From ${row.c[0].f} to ${row.c[1].f}. Click for more details.`, {
+// 				permanent: true
+			})
+			.addTo(cluster);
+// 			console.log(`Added marker ${i}`);
+			i += 1;
+		})
+		
+		j += 1;
+	});
+// 	StrikeMap.fitBounds(StrikeMap.getBounds())
+}
+</script>
+{{ end }}

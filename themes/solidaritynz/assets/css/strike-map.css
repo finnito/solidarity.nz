@@ -1,0 +1,37 @@
+#strike-map {
+  min-height: 500px;
+  max-height: 75vh;
+  width: 100%;
+  position: relative;
+}
+
+.map-container {
+	display: flex;
+	flex-direction: column;
+	margin-top:1rem;
+}
+
+.map-container .sidebar {
+	padding: 0 1rem 0 0;
+	width: 100%;
+}
+
+.active-marker {
+	filter: hue-rotate(150deg);
+}
+
+.leaflet-tooltip-pane > .leaflet-tooltip {
+	width: 100px;
+	white-space: pre-line;
+	overflow-wrap: break-word
+}
+
+@media (min-width: 850px) {
+	.map-container {
+		flex-direction: row;
+	}
+	
+	.map-container .sidebar {
+		width: 40%;
+	}
+}
