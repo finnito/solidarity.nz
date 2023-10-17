@@ -1,14 +1,15 @@
 #strike-map {
   min-height: 500px;
   max-height: 75vh;
-  width: 100%;
+  width: calc(100% + 1rem);
   position: relative;
+  left: -0.5rem;
 }
 
 .map-container {
 	display: flex;
 	flex-direction: column;
-	margin-top:1rem;
+	margin-top: 1rem;
 }
 
 .map-container .sidebar {
@@ -27,6 +28,11 @@
 }
 
 @media (min-width: 850px) {
+	#strike-map {
+		width: 100%;
+		left: auto;
+	}
+
 	.map-container {
 		flex-direction: row;
 	}
