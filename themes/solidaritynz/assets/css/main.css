@@ -4,6 +4,11 @@
 	--radius: 1rem;
 }
 
+html, body {
+	overflow-x: hidden;
+	position: relative;
+}
+
 body {
   color: #222;
   font-size: 18px;
@@ -17,7 +22,6 @@ body {
   font-weight: normal;
   padding: 1rem 0.5rem;
   box-sizing: border-box;
-  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
