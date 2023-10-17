@@ -54,6 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	.on("zoomend", highlightSelectedGroup)
 	.on("moveend", highlightSelectedGroup);
 //     StrikeMap.addControl(new L.Control.Fullscreen());
+    StrikeMap.addControl(new L.Control.Fullscreen());
     Strikes = L.featureGroup().addTo(StrikeMap);
 	
 	// WORKS
