@@ -32,7 +32,7 @@ body > main {
 	flex-grow: 1;
 }
 
-main { margin: 1rem auto; }
+main { margin: 1rem 0; }
 
 img {
 	max-width: 100%;
