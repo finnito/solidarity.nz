@@ -23,6 +23,9 @@ body {
 h1, h2, h3, h4, h5, h6 {
 	font-family: Seravek, 'Gill Sans Nova', Ubuntu, Calibri, 'DejaVu Sans', source-sans-pro, sans-serif;
 font-weight: 900;
+	font-size: 1.5rem;
+	line-height: 1.1;
+}
 }
 
 body > main {
@@ -93,13 +96,15 @@ font-weight: 700;
 background-color: var(--red);
 }
 
-header h1+p,
-header h2+p {
-	margin-top: -1.5rem;
+header h1+p.small,
+header h2+p.small {
+	margin-top: -1rem;
 	margin-bottom: 0;
 	font-style: italic;
 	font-size: smaller;
 }
+
+main h1, main h2 { margin-top: 0; }
 
 main article:not(:last-of-type) main {
 	border-bottom: 1px solid lightgrey;

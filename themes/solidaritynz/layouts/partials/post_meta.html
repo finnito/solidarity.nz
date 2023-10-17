@@ -2,7 +2,7 @@
 {{ $dateHuman := .Date | time.Format ":date_long" }}
 
 {{ with .Date }}
-<p><time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time> 
+<p class="small"><time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time> 
 {{ end }}
 {{ with .Params.author }}
 	{{ $author := index site.Data.authors . }}
