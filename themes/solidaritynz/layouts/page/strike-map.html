@@ -47,9 +47,9 @@ var StrikeMap,
 
 document.addEventListener("DOMContentLoaded", function() {
 	StrikeMap = L.map('strike-map', {
-		zoom: 12,
+		zoom: 5,
 		maxZoom: 14,
-		center: L.latLng(-43.5349451,172.6341468)
+		center: L.latLng(-41.705728, 172.243652)
 	})
 	.on("zoomend", highlightSelectedGroup)
 	.on("moveend", highlightSelectedGroup);
