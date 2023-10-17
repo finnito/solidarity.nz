@@ -52,8 +52,10 @@ document.addEventListener("DOMContentLoaded", function() {
 		center: L.latLng(-41.705728, 172.243652)
 	})
 	.on("zoomend", highlightSelectedGroup)
-	.on("moveend", highlightSelectedGroup);
-//     StrikeMap.addControl(new L.Control.Fullscreen());
+	.on("moveend", highlightSelectedGroup)
+	.on("moveend", function(e) {
+		console.log(StrikeMap.getCenter());
+	});
     StrikeMap.addControl(new L.Control.Fullscreen());
     Strikes = L.featureGroup().addTo(StrikeMap);
 	
@@ -63,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		attribution: "© Toitū Te Whenua - CC BY 4.0"
 	}).addTo(StrikeMap);
     
-    // Sheet: https://docs.google.com/spreadsheets/d/1pE7Sa5UpRX7Wz_hAsntYntUnQ0kBuYsJdfhip-BKYts/
+    // Sheet
     var strikeDataURL = "https://docs.google.com/spreadsheets/d/1pE7Sa5UpRX7Wz_hAsntYntUnQ0kBuYsJdfhip-BKYts/gviz/tq";
     fetch(strikeDataURL)
     	.then(data=>{return data.text()})
@@ -72,7 +74,6 @@ document.addEventListener("DOMContentLoaded", function() {
 			var to   = res.lastIndexOf("}")+1;
 			var jsonText = res.slice(from, to);
 			var parsedText = JSON.parse(jsonText);
-// 			console.log(parsedText);
 			setTotalStrikes(parsedText.table);
 			addStrikes(parsedText.table);
     	})
@@ -88,16 +89,10 @@ function highlightSelectedGroup() {
 		marker.classList.remove("active-marker");
 	})
 
-	// Highlight visible markers
-	// if (SelectedGroup) {
-// 		Object.values(SelectedGroup._layers).forEach((layer) => {
-// 			console.log(layer._icon.classList.add("active-marker"));
-// 		})
-// 	}
+	// Highlight current markers
 	StrikeMap.eachLayer(function(layer) {
 		if (layer.hasOwnProperty("_icon") && layer.options.strikeID === SelectedGroup) {
 			layer._icon.classList.add("active-marker");
-			console.log(layer);
 		}
 	})
 }
@@ -120,6 +115,7 @@ function updateSidebar() {
 		sources.push(`<a href="${source}">Source ${i}</a>`);
 		i += 1;
 	})
+	
 	document.querySelector(".sidebar .sources span").innerHTML = sources.join(", ");
 }
 
@@ -150,43 +146,23 @@ function addStrikes(table) {
 	var i = 1,
 		j = 0;
 	table.rows.forEach(row => {
-// 		console.log(row);
-
-		// var group = L.featureGroup()
-// 		.addTo(cluster)
-// 		.on("click", function(e) {
-// 			console.log(e);
-// 			console.log(e.target._layers);
-// 			SelectedGroup = e.target._featureGroup;
-// 			highlightSelectedGroup();
-// 			SelectedEvent = row.c;
-// 			updateSidebar();
-// 		})
-// 		.on("animationend", highlightSelectedGroup)
-// 		.bindTooltip(`${row.c[2].v} by members of ${row.c[3].v}.<br/>From ${row.c[0].f} to ${row.c[1].f}. Click for more details.`);
-		
 		row.c[6].v.split("; ").forEach(coordinates => {
 			L.marker(coordinates.split(", "), {
 				strikeID: j
 			})
 			.on('click', function(e) {
-// 				console.log(e);
 				SelectedEvent = row.c;
 				SelectedGroup = e.target.options.strikeID;
 				updateSidebar();
 				highlightSelectedGroup();
 			})
-			.bindTooltip(`${row.c[2].v} by members of ${row.c[3].v}.<br/>From ${row.c[0].f} to ${row.c[1].f}. Click for more details.`, {
-// 				permanent: true
-			})
+			.bindTooltip(`${row.c[2].v} by members of ${row.c[3].v}.<br/>From ${row.c[0].f} to ${row.c[1].f}. Click for more details.`)
 			.addTo(cluster);
-// 			console.log(`Added marker ${i}`);
+			
 			i += 1;
 		})
-		
 		j += 1;
 	});
-// 	StrikeMap.fitBounds(StrikeMap.getBounds())
 }
 </script>
 {{ end }}
