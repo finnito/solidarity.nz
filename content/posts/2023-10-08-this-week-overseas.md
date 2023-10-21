@@ -3,7 +3,7 @@ title: This Week Overseas
 date: 2023-10-08
 author: Finn Le Sueur
 series: Overseas
-tags: ["Cory Doctorow", "Foreign Healthcare", "Children", "American Labor"]
+tags: ["Cory Doctorow", "Foreign Healthcare", "Children", "American Labour"]
 summary: It's all go with union efforts and collective action this week. Blood in the Machine by Brian Merchant, US healthcare workers on strike, US schools to teach kids their labour rights and more.
 ---
 
