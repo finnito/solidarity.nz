@@ -3,7 +3,7 @@ title: Words Fly at Massey
 date: 2023-10-22T13:00:00+13:00
 author: Finn Le Sueur
 series: Massey University
-tags: ["Massey", "TEU" "Job Cuts"]
+tags: ["Massey", "TEU", "Job Cuts"]
 ---
 
 [As we saw earlier in the week](https://solidarity.nz/posts/2023-10-17-massey-univerisity-protest-cuts/), Massey University is proposing further job cuts, and [Tertiary Education Union (TEU)](https://teu.ac.nz) members were planning to rally at the campus on Wednesday 18 October.
